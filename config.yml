@@ -1,0 +1,76 @@
+classifier_data:
+  # filenames
+  dataset: resources/classifier/dataset.csv
+  train: resources/classifier/train.csv
+  valid: resources/classifier/valid.csv
+  test: resources/classifier/test.csv
+  # key fields
+  text_field: text
+  label_field: category
+  # outputs
+  test_pred_scores: output/classifier/scores.txt
+  test_pred: output/classifier/test_pred.txt
+  # best model
+  log_dir: logdir/classifier/
+
+extractor_data:
+  # filenames
+  positive_dataset: resources/extractor/positive_dataset.csv
+  positive_train: resources/extractor/positive_train.csv
+  positive_valid: resources/extractor/positive_valid.csv
+  positive_test: resources/extractor/positive_test.csv
+  iob2_train: resources/extractor/iob2_train.csv
+  iob2_valid: resources/extractor/iob2_valid.csv
+  iob2_test: resources/extractor/iob2_test.csv
+  master: resources/extractor/master.csv
+  # key fields
+  text_field: token
+  label_field: tag
+  # outputs
+  test_pred_scores: output/extractor/scores.txt
+  test_pred: output/extractor/test_pred.txt
+  # best model
+  log_dir: logdir/extractor/
+
+normalizer_data:
+  # filenames
+  dataset: resources/normalizer/dataset.csv
+  train: resources/normalizer/train.csv
+  valid: resources/normalizer/valid.csv
+  test: resources/normalizer/test.csv
+  master: resources/normalizer/master.csv
+  meddra: resources/normalizer/MedAscii/llt.asc
+  # key fields
+  text_field: keywords
+  label_field: idmeddra
+  meddra_field: meddra
+  # outputs
+  test_pred_scores: output/normalizer/scores.txt
+  test_pred: output/normalizer/test_pred.txt
+  test_pred_sim: output/normalizer/test_pred_sim.txt
+  html: output/normalizer/cm
+  html_sim: output/normalizer/cm_sim
+  cm_output: output/normalizer/
+  test_pred_scores_sim: output/normalizer/scores_sim.csv
+  # similarity model
+  sim_model: paraphrase-MiniLM-L6-v2
+  # best model
+  log_dir: logdir/normalizer/
+
+model:
+  model_name: distilbert-base-uncased
+  max_seq_length: 128
+  classifier_classes: 2
+  extractor_classes: 3
+  normalizer_classes: 32
+
+training:
+  learn_rate: 3e-5
+  num_epochs: 3
+  accum_steps: 4
+  batch_size: 8
+  log_dir: logdir
+  fp16_params: None
+
+general:
+  seed: 17
